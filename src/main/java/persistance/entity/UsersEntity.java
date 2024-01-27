@@ -1,16 +1,11 @@
-package entity;
+package persistance.entity;
 
 import jakarta.persistence.*;
+import service.Department;
 
 @Entity
 @Table(name = "users", schema = "medical_equipment")
 public class UsersEntity {
-    public enum Department {
-        DOCTOR,
-        TECHNICIAN,
-        ADMIN
-    }
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_login")
     private String userLogin;
@@ -19,7 +14,7 @@ public class UsersEntity {
     private String userPassword;
     @Basic
     @Column(name = "department")
-    private Department department;
+    private Object department;
 
     public String getUserLogin() {
         return userLogin;
@@ -41,7 +36,7 @@ public class UsersEntity {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(Object department) {
         this.department = department;
     }
 

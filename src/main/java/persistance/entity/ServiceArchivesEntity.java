@@ -1,4 +1,4 @@
-package entity;
+package persistance.entity;
 
 import jakarta.persistence.*;
 
@@ -15,7 +15,7 @@ public class ServiceArchivesEntity {
     @Column(name = "service_date")
     private Date serviceDate;
     @Basic
-    @Column(name = "equipment_id")
+    @Column(name = "equipment_id", insertable = false, updatable = false)
     private int equipmentId;
     @Basic
     @Column(name = "technician")

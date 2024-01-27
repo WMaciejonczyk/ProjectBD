@@ -1,2 +1,7 @@
-package PACKAGE_NAME;public enum Department {
+package service;
+
+public enum Department {
+    DOCTOR,
+    TECHNICIAN,
+    ADMIN
 }

@@ -1,4 +1,4 @@
-package entity;
+package persistance.entity;
 
 import jakarta.persistence.*;
 
@@ -18,7 +18,7 @@ public class ReservationsEntity {
     @Column(name = "end_date")
     private Date endDate;
     @Basic
-    @Column(name = "equipment_id")
+    @Column(name = "equipment_id", insertable = false, updatable = false)
     private int equipmentId;
     @Basic
     @Column(name = "reserver")
