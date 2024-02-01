@@ -1,4 +1,4 @@
-package persistance;
+package persistance.archives;
 
 import persistance.entity.ServiceArchivesEntity;
 

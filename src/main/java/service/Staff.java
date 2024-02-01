@@ -1,9 +1,10 @@
 package service;
 
+import types.Department;
+
 public class Staff {
     private String login;
     private String password;
-
     private Department department;
 
     public Staff(String login, String password, Department department) {

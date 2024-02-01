@@ -1,5 +1,6 @@
 import jakarta.persistence.Persistence;
-import persistance.Users;
+import persistance.equipment.EquipmentStorage;
+import persistance.users.Users;
 import presentation.ConsoleApp;
 import service.Admin;
 
@@ -9,18 +10,17 @@ public class App {
     public static void main(String[] args) {
         // setup
         var scanner = new Scanner(System.in);
-        var emf = Persistence.createEntityManagerFactory("default");
-        var em = emf.createEntityManager();
+        var emf = Persistence.createEntityManagerFactory("default");;
 
-        var users = new Users(em);
+        var users = new Users(emf);
         var admin = new Admin(users);
-        var consoleApp = new ConsoleApp(scanner, admin);
+        var equipment = new EquipmentStorage(emf);
+        var consoleApp = new ConsoleApp(scanner, admin, equipment);
         // start
         consoleApp.start();
 
         // close app
         scanner.close();
-        em.close();
         emf.close();
     }
 }

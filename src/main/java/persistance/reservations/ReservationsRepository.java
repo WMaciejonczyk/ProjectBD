@@ -1,4 +1,4 @@
-package persistance;
+package persistance.reservations;
 
 import jakarta.persistence.EntityManager;
 import persistance.entity.ReservationsEntity;

@@ -1,6 +1,8 @@
 package persistance.entity;
 
 import jakarta.persistence.*;
+import types.EqStatus;
+import types.EqType;
 
 import java.sql.Date;
 import java.util.Collection;
@@ -17,7 +19,8 @@ public class InfoEntity {
     private String eqName;
     @Basic
     @Column(name = "eq_type")
-    private Object eqType;
+    @Enumerated(EnumType.STRING)
+    private EqType eqType;
     @Basic
     @Column(name = "production_date")
     private Date productionDate;
@@ -26,7 +29,8 @@ public class InfoEntity {
     private Date lastServiceDate;
     @Basic
     @Column(name = "eq_status")
-    private Object eqStatus;
+    @Enumerated(EnumType.STRING)
+    private EqStatus eqStatus;
     @Basic
     @Column(name = "service_validity_period")
     private short serviceValidityPeriod;
@@ -51,11 +55,11 @@ public class InfoEntity {
         this.eqName = eqName;
     }
 
-    public Object getEqType() {
+    public EqType getEqType() {
         return eqType;
     }
 
-    public void setEqType(Object eqType) {
+    public void setEqType(EqType eqType) {
         this.eqType = eqType;
     }
 
@@ -75,11 +79,11 @@ public class InfoEntity {
         this.lastServiceDate = lastServiceDate;
     }
 
-    public Object getEqStatus() {
+    public EqStatus getEqStatus() {
         return eqStatus;
     }
 
-    public void setEqStatus(Object eqStatus) {
+    public void setEqStatus(EqStatus eqStatus) {
         this.eqStatus = eqStatus;
     }
 

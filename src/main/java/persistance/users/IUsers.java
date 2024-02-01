@@ -1,4 +1,4 @@
-package persistance;
+package persistance.users;
 
 import persistance.entity.UsersEntity;
 
