@@ -53,7 +53,7 @@ public class TechnicianApp {
                 break;
             case "4":
             case "Show a list of equipment (with next service date)":
-                getEquipmentList();
+//                getEquipmentList();
                 break;
             case "5":
             case "Add a new equipment":
@@ -77,7 +77,7 @@ public class TechnicianApp {
                 Date.valueOf(serviceDate), EqStatus.valueOf("free"), validity), storage);
     }
 
-    private void getEquipmentList() {
-        tech.getEquipmentList();
-    }
+//    private void getEquipmentList() {
+//        tech.getEquipmentList();
+//    }
 }
