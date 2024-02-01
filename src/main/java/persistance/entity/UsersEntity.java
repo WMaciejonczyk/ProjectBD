@@ -1,7 +1,7 @@
 package persistance.entity;
 
 import jakarta.persistence.*;
-import service.Department;
+import types.Department;
 
 @Entity
 @Table(name = "users", schema = "medical_equipment")
@@ -14,7 +14,8 @@ public class UsersEntity {
     private String userPassword;
     @Basic
     @Column(name = "department")
-    private Object department;
+    @Enumerated(EnumType.STRING)
+    private Department department;
 
     public String getUserLogin() {
         return userLogin;
@@ -32,11 +33,11 @@ public class UsersEntity {
         this.userPassword = userPassword;
     }
 
-    public Object getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Object department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 

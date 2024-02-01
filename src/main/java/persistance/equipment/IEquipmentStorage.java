@@ -1,4 +1,4 @@
-package persistance;
+package persistance.equipment;
 
 import persistance.entity.InfoEntity;
 

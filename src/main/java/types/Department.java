@@ -1,4 +1,4 @@
-package service;
+package types;
 
 public enum Department {
     DOCTOR,

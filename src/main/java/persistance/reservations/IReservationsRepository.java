@@ -1,4 +1,4 @@
-package persistance;
+package persistance.reservations;
 
 import persistance.entity.ReservationsEntity;
 

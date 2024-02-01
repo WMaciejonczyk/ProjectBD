@@ -1,7 +1,9 @@
 package presentation;
-import service.Department;
+import persistance.equipment.IEquipmentStorage;
+import types.Department;
 import service.IAdmin;
 import service.Staff;
+import service.Technician;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -9,17 +11,27 @@ import java.util.Scanner;
 public class ConsoleApp {
     private final Scanner scanner;
     private final IAdmin admin;
+    private IEquipmentStorage storage;
+    private Optional<Staff> user;
+    private TechnicianApp technicianApp;
 
-    public ConsoleApp(Scanner scanner, IAdmin admin) {
+    public ConsoleApp(Scanner scanner, IAdmin admin, IEquipmentStorage storage) {
         this.scanner = scanner;
         this.admin = admin;
+        this.storage = storage;
     }
 
     public void start() {
         System.out.println("Hello!");
-
-        var option = chooseEntryOption();
-        perform(option);
+        while (true) {
+            var option = chooseEntryOption();
+            if (option.equalsIgnoreCase("q") || option.equalsIgnoreCase("quit")) {
+                break;
+            }
+            perform(option);
+            System.out.println();
+            System.out.println();
+        }
     }
 
     private String chooseEntryOption() {
@@ -50,7 +62,7 @@ public class ConsoleApp {
         System.out.println("Choose department (doctor/technician)");
         var department = scanner.nextLine().toUpperCase();
         admin.addUser(new Staff(username, password, Department.valueOf(department)));
-        getLoginInfo();
+
     }
 
     private void getLoginInfo() {
@@ -58,22 +70,49 @@ public class ConsoleApp {
         var username = scanner.nextLine();
         System.out.println("Enter password:");
         var password = scanner.nextLine();
-        Optional<Staff> user = admin.getAllUsers().stream()
+        user = admin.getAllUsers().stream()
                 .filter(p -> p.getLogin().equals(username) && p.getPassword().equals(password))
                 .findFirst();
 
         if (user.isPresent()) {
-            if (user.get().getDepartment() == Department.DOCTOR) {
-                var option = chooseDoctorOption();
-                performDoctor(option);
-            }
-            else if (user.get().getDepartment() == Department.TECHNICIAN) {
-                var option = chooseTechnicianOption();
-                performTechnician(option);
+            switch (user.get().getDepartment()) {
+                case ADMIN:
+                    var optionA = chooseAdminOption();
+                    performAdmin(optionA);
+                    break;
+                case DOCTOR:
+                    var optionB = chooseDoctorOption();
+                    performDoctor(optionB);
+                    break;
+                case TECHNICIAN:
+                    technicianApp = new TechnicianApp((Technician)user.get(), storage);
+                    technicianApp.start();
+                    break;
+                default:
+                    System.out.println("Invalid department.");
             }
         }
         else {
             System.out.println("Invalid login or password.");
+        }
+    }
+
+    private String chooseAdminOption() {
+        System.out.println("What do you want to do?");
+        System.out.println("(1) Show all users");
+        System.out.println("(2) Delete user");
+
+        return scanner.nextLine();
+    }
+
+    private void performAdmin (String option) {
+        switch (option) {
+            case "1":
+            case "Show all users":
+                break;
+            case "2":
+            case "Delete user":
+                break;
         }
     }
 
@@ -113,39 +152,9 @@ public class ConsoleApp {
         }
     }
 
-    private String chooseTechnicianOption() {
-        System.out.println("What do you want to do?");
-        System.out.println("(1) Start servicing an equipment");
-        System.out.println("(2) End servicing an equipment");
-        System.out.println("(3) Report service");
-        System.out.println("(4) Show a list of equipment (with next service date)");
-        System.out.println("(5) Add a new equipment");
 
-        return scanner.nextLine();
-    }
 
-    private void performTechnician (String option) {
-        switch (option) {
-            case "1":
-            case "Start servicing an equipment":
-                // reserve();
-                break;
-            case "2":
-            case "End servicing an equipment":
-                //  getLoginInfo();
-                break;
-            case "3":
-            case "Report service":
-                //  getLoginInfo();
-                break;
-            case "4":
-            case "Show a list of equipment (with next service date)":
-                //  getLoginInfo();
-                break;
-            case "5":
-            case "Add a new equipment":
-                //  getLoginInfo();
-                break;
-        }
-    }
+
+
+
 }

@@ -1,5 +1,5 @@
 package service;
-import persistance.IUsers;
+import persistance.users.IUsers;
 import persistance.entity.UsersEntity;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +28,7 @@ public class Admin implements IAdmin {
         if (usersEntity == null) {
             return null;
         }
-        return new Staff(usersEntity.getUserLogin(), usersEntity.getUserPassword(), Department.valueOf(usersEntity.getDepartment().toString().toUpperCase()));
+        return new Staff(usersEntity.getUserLogin(), usersEntity.getUserPassword(), usersEntity.getDepartment());
     }
 
     private UsersEntity mapStaffToUsersEntity(Staff staff) {
@@ -36,7 +36,7 @@ public class Admin implements IAdmin {
         if (!staff.getDepartment().name().equalsIgnoreCase("admin")) {
             usersEntity.setUserLogin(staff.getLogin());
             usersEntity.setUserPassword(staff.getPassword());
-            usersEntity.setDepartment(staff.getDepartment().name());
+            usersEntity.setDepartment(staff.getDepartment());
             return usersEntity;
         }
         else {
