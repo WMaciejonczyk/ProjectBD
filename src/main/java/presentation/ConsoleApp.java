@@ -1,11 +1,14 @@
 package presentation;
 import persistance.archives.IArchives;
 import persistance.equipment.IEquipmentStorage;
+import persistance.reservations.IReservationsRepository;
+import persistance.view.DoctorViewStorage;
 import persistance.view.TechnicianViewStorage;
 import types.Department;
 import service.IAdmin;
 import service.Staff;
 import service.Technician;
+import service.Doctor;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -18,13 +21,19 @@ public class ConsoleApp {
     private IArchives archives;
     private Optional<Staff> user;
     private TechnicianApp technicianApp;
+    private DoctorApp doctorApp;
+    private IReservationsRepository reservations;
+    private DoctorViewStorage DocViewStorage;
 
-    public ConsoleApp(Scanner scanner, IAdmin admin, IEquipmentStorage storage, TechnicianViewStorage viewStorage, IArchives archives) {
+    public ConsoleApp(Scanner scanner, IAdmin admin, IEquipmentStorage storage, TechnicianViewStorage viewStorage, IArchives archives,
+                      DoctorViewStorage DocViewStorage, IReservationsRepository reservations) {
         this.scanner = scanner;
         this.admin = admin;
         this.storage = storage;
         this.viewStorage = viewStorage;
         this.archives = archives;
+        this.DocViewStorage = DocViewStorage;
+        this.reservations = reservations;
     }
 
     public void start() {
@@ -86,8 +95,9 @@ public class ConsoleApp {
                     performAdmin(optionA);
                     break;
                 case DOCTOR:
-                    var optionB = chooseDoctorOption();
-                    performDoctor(optionB);
+                    Doctor doc = new Doctor(user.get().getLogin(), user.get().getPassword(), user.get().getDepartment());
+                    doctorApp = new DoctorApp(doc, storage, DocViewStorage, reservations);
+                    doctorApp.start();
                     break;
                 case TECHNICIAN:
                     Technician tech = new Technician(user.get().getLogin(), user.get().getPassword(), user.get().getDepartment());
