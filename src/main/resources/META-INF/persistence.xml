@@ -8,7 +8,6 @@
         <class>persistance.entity.ReservationsEntity</class>
         <class>persistance.entity.ServiceArchivesEntity</class>
         <class>persistance.entity.UsersEntity</class>
-        <class>persistance.entity.TechnicianViewEntity</class>
         <class>persistance.view.TechnicianView</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/medical_equipment"/>
