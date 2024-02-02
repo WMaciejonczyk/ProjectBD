@@ -5,30 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4eaacd9a-420a-4108-b315-b1b537a2b177" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/persistance/equipment/EquipmentStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/presentation/TechnicianApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/Equipment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/EqStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/types/EqType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/persistance/view/DoctorView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/persistance/view/DoctorViewStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/persistance/view/TechnicianView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/persistance/view/TechnicianViewStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/presentation/DoctorApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ArchiveEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/DoctorViewItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/TechnicianViewItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/fbc7795d-b5da-4f45-8e73-eccb1d2a9e02.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fbc7795d-b5da-4f45-8e73-eccb1d2a9e02.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/Archives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/archives/Archives.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/EquipmentStorage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/IArchives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/archives/IArchives.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/IEquipmentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/equipment/IEquipmentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/IReservationsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/reservations/IReservationsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/IUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/users/IUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/ReservationsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/reservations/ReservationsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/users/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/entity/InfoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/entity/InfoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/entity/UsersEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/entity/UsersEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/archives/Archives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/archives/Archives.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/equipment/EquipmentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/equipment/EquipmentStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/equipment/IEquipmentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/equipment/IEquipmentStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/presentation/ConsoleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/ConsoleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/types/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/presentation/TechnicianApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/TechnicianApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Doctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Staff.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/Technician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Technician.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,32 +66,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;fbc7795d-b5da-4f45-8e73-eccb1d2a9e02&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/macie/IdeaProjects/ProjectBD/src/main/java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Database Script.database.sql.executor": "Run",
+    "JPA.DatabaseSchemaImportDialog": "fbc7795d-b5da-4f45-8e73-eccb1d2a9e02",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "mateusz",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/macie/IdeaProjects/ProjectBD/src/main/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "RunConfigurationTargetLRU": [
+      "fbc7795d-b5da-4f45-8e73-eccb1d2a9e02"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="persistance" />
@@ -105,6 +104,14 @@
       <recent name="entity" />
       <recent name="" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="database.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/main/java/database/database.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="fbc7795d-b5da-4f45-8e73-eccb1d2a9e02" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

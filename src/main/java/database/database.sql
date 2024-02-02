@@ -39,6 +39,12 @@ department ENUM('doctor', 'technician', 'admin') NOT NULL
 );
 
 INSERT INTO users(user_login, user_password, department)
- VALUES('project_admin', '1234', 'admin');
- 
+VALUES('project_admin', '1234', 'admin');
+
+INSERT INTO reservations(start_date, end_date, equipment_id, reserver)
+VALUES('2024-02-02', '2024-02-10', 1, 'John Doe');
+
+INSERT INTO reservations(start_date, end_date, equipment_id, reserver)
+VALUES('2024-02-15', '2024-02-20', 2, 'Jane Doe');
+
 SELECT * FROM users;

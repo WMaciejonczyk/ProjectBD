@@ -1,28 +1,43 @@
 package presentation;
+import persistance.archives.IArchives;
 import persistance.equipment.IEquipmentStorage;
+import persistance.reservations.IReservationsRepository;
+import persistance.view.DoctorViewStorage;
+import persistance.view.TechnicianViewStorage;
 import types.Department;
 import service.IAdmin;
 import service.Staff;
 import service.Technician;
+import service.Doctor;
 
+import javax.print.Doc;
 import java.util.Optional;
 import java.util.Scanner;
-
 public class ConsoleApp {
     private final Scanner scanner;
     private final IAdmin admin;
     private IEquipmentStorage storage;
+    private TechnicianViewStorage viewStorage;
+    private IArchives archives;
     private Optional<Staff> user;
     private TechnicianApp technicianApp;
+    private DoctorApp doctorApp;
+    private IReservationsRepository reservations;
+    private DoctorViewStorage DocViewStorage;
 
-    public ConsoleApp(Scanner scanner, IAdmin admin, IEquipmentStorage storage) {
+    public ConsoleApp(Scanner scanner, IAdmin admin, IEquipmentStorage storage,
+                      TechnicianViewStorage viewStorage, IArchives archives,
+                      DoctorViewStorage DocViewStorage, IReservationsRepository reservations) {
         this.scanner = scanner;
         this.admin = admin;
         this.storage = storage;
+        this.viewStorage = viewStorage;
+        this.archives = archives;
+        this.DocViewStorage = DocViewStorage;
+        this.reservations = reservations;
     }
 
     public void start() {
-        System.out.println("Hello!");
         while (true) {
             var option = chooseEntryOption();
             if (option.equalsIgnoreCase("q") || option.equalsIgnoreCase("quit")) {
@@ -54,6 +69,7 @@ public class ConsoleApp {
                 break;
         }
     }
+
     private void getRegisterInfo() {
         System.out.println("Enter username:");
         var username = scanner.nextLine();
@@ -73,7 +89,6 @@ public class ConsoleApp {
         user = admin.getAllUsers().stream()
                 .filter(p -> p.getLogin().equals(username) && p.getPassword().equals(password))
                 .findFirst();
-
         if (user.isPresent()) {
             switch (user.get().getDepartment()) {
                 case ADMIN:
@@ -81,18 +96,19 @@ public class ConsoleApp {
                     performAdmin(optionA);
                     break;
                 case DOCTOR:
-                    var optionB = chooseDoctorOption();
-                    performDoctor(optionB);
+                    Doctor doc = new Doctor(user.get().getLogin(), user.get().getPassword(), user.get().getDepartment());
+                    doctorApp = new DoctorApp(doc, storage, DocViewStorage, reservations);
+                    doctorApp.start();
                     break;
                 case TECHNICIAN:
-                    technicianApp = new TechnicianApp((Technician)user.get(), storage);
+                    Technician tech = new Technician(user.get().getLogin(), user.get().getPassword(), user.get().getDepartment());
+                    technicianApp = new TechnicianApp(tech, storage, viewStorage, archives);
                     technicianApp.start();
                     break;
                 default:
                     System.out.println("Invalid department.");
             }
-        }
-        else {
+        } else {
             System.out.println("Invalid login or password.");
         }
     }
@@ -101,60 +117,41 @@ public class ConsoleApp {
         System.out.println("What do you want to do?");
         System.out.println("(1) Show all users");
         System.out.println("(2) Delete user");
-
         return scanner.nextLine();
     }
 
-    private void performAdmin (String option) {
+    private void performAdmin(String option) {
         switch (option) {
             case "1":
             case "Show all users":
+                showAllUsers();
                 break;
             case "2":
             case "Delete user":
+                deleteUser();
                 break;
         }
     }
 
-    private String chooseDoctorOption() {
-        System.out.println("What do you want to do?");
-        System.out.println("(1) Reserve an equipment");
-        System.out.println("(2) Start using an equipment");
-        System.out.println("(3) End using an equipment");
-        System.out.println("(4) Show a list of equipment (with status)");
-        System.out.println("(5) Show reservations of an equipment");
-
-        return scanner.nextLine();
-    }
-
-    private void performDoctor (String option) {
-        switch (option) {
-            case "1":
-            case "Reserve an equipment":
-                // reserve();
-                break;
-            case "2":
-            case "Start using an equipment":
-              //  getLoginInfo();
-                break;
-            case "3":
-            case "End using an equipment":
-              //  getLoginInfo();
-                break;
-            case "4":
-            case "Show a list of equipment (with status)":
-              //  getLoginInfo();
-                break;
-            case "5":
-            case "Show reservations of an equipment":
-              //  getLoginInfo();
-                break;
+    private void showAllUsers() {
+        System.out.println("User      Department");
+        for (Staff s : admin.getAllUsers()) {
+            if (!s.getDepartment().name().equalsIgnoreCase("admin")) {
+                String leftAlignment = "%-9s %-10s %n";
+                System.out.format(leftAlignment, s.getLogin(), s.getDepartment());
+            }
         }
     }
 
-
-
-
-
-
+    private void deleteUser() {
+        System.out.println("Enter username:");
+        var username = scanner.nextLine();
+        Staff staff = admin.getAllUsers().stream().filter(u -> u.getLogin().equals(username)).findFirst().get();
+        System.out.println(staff.getLogin() + "  " + staff.getDepartment());
+        System.out.println("Are you sure about deletion? (y/n)");
+        var response = scanner.nextLine();
+        if (response.equalsIgnoreCase("y")) {
+            admin.deleteUser(username);
+        }
+    }
 }
