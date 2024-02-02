@@ -7,10 +7,10 @@ USE medical_equipment;
 CREATE TABLE info(
 eq_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 eq_name VARCHAR(255) NOT NULL,
-eq_type ENUM('ECG', 'EMG', 'RTG', 'MRI', 'other'),
+eq_type ENUM('ECG', 'EMG', 'RTG', 'MRI', 'OTHER'),
 production_date DATE NOT NULL,
 last_service_date DATE NOT NULL,
-eq_status ENUM('free', 'occupied') NOT NULL,
+eq_status ENUM('FREE', 'OCCUPIED') NOT NULL,
 service_validity_period SMALLINT NOT NULL
 );
 
@@ -35,10 +35,14 @@ FOREIGN KEY (equipment_id) REFERENCES info(eq_id)
 CREATE TABLE users(
 user_login VARCHAR(30) PRIMARY KEY NOT NULL,
 user_password VARCHAR(30) NOT NULL,
-department ENUM('doctor', 'technician', 'admin') NOT NULL
+department ENUM('DOCTOR', 'TECHNICIAN', 'ADMIN') NOT NULL
 );
 
 INSERT INTO users(user_login, user_password, department)
- VALUES('project_admin', '1234', 'admin');
+ VALUES('project_admin', '1234', 'ADMIN');
  
 SELECT * FROM users;
+
+CREATE VIEW technician_view AS
+SELECT info.eq_name, info.eq_type, DATE_ADD(info.last_service_date, INTERVAL info.service_validity_period DAY) AS next_service_date
+FROM info;
