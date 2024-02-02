@@ -1,5 +1,7 @@
 package presentation;
+import persistance.archives.IArchives;
 import persistance.equipment.IEquipmentStorage;
+import persistance.view.TechnicianViewStorage;
 import types.Department;
 import service.IAdmin;
 import service.Staff;
@@ -12,17 +14,20 @@ public class ConsoleApp {
     private final Scanner scanner;
     private final IAdmin admin;
     private IEquipmentStorage storage;
+    private TechnicianViewStorage viewStorage;
+    private IArchives archives;
     private Optional<Staff> user;
     private TechnicianApp technicianApp;
 
-    public ConsoleApp(Scanner scanner, IAdmin admin, IEquipmentStorage storage) {
+    public ConsoleApp(Scanner scanner, IAdmin admin, IEquipmentStorage storage, TechnicianViewStorage viewStorage, IArchives archives) {
         this.scanner = scanner;
         this.admin = admin;
         this.storage = storage;
+        this.viewStorage = viewStorage;
+        this.archives = archives;
     }
 
     public void start() {
-        System.out.println("Hello!");
         while (true) {
             var option = chooseEntryOption();
             if (option.equalsIgnoreCase("q") || option.equalsIgnoreCase("quit")) {
@@ -85,7 +90,8 @@ public class ConsoleApp {
                     performDoctor(optionB);
                     break;
                 case TECHNICIAN:
-                    technicianApp = new TechnicianApp((Technician)user.get(), storage);
+                    Technician tech = new Technician(user.get().getLogin(), user.get().getPassword(), user.get().getDepartment());
+                    technicianApp = new TechnicianApp(tech, storage, viewStorage, archives);
                     technicianApp.start();
                     break;
                 default:
@@ -109,10 +115,34 @@ public class ConsoleApp {
         switch (option) {
             case "1":
             case "Show all users":
+                showAllUsers();
                 break;
             case "2":
             case "Delete user":
+                deleteUser();
                 break;
+        }
+    }
+
+    private void showAllUsers() {
+        System.out.println("User      Department");
+        for (Staff s : admin.getAllUsers()) {
+            if (!s.getDepartment().name().equalsIgnoreCase("admin")) {
+                String leftAlignment = "%-9s %-10s %n";
+                System.out.format(leftAlignment, s.getLogin(), s.getDepartment());
+            }
+        }
+    }
+
+    private void deleteUser() {
+        System.out.println("Enter username:");
+        var username = scanner.nextLine();
+        Staff staff = admin.getAllUsers().stream().filter(u -> u.getLogin().equals(username)).findFirst().get();
+        System.out.println(staff.getLogin() + "  " + staff.getDepartment());
+        System.out.println("Are you sure about deletion? (y/n)");
+        var response = scanner.nextLine();
+        if (response.equalsIgnoreCase("y")) {
+            admin.deleteUser(username);
         }
     }
 
