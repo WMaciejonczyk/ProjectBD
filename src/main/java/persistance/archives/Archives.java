@@ -1,19 +1,20 @@
 package persistance.archives;
 
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import persistance.entity.ServiceArchivesEntity;
 
 import java.util.List;
 
 public class Archives implements IArchives {
-    private final EntityManager entityManager;
+    private final EntityManagerFactory sessionManager;
 
-    public Archives (EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public Archives (EntityManagerFactory sessionManager) {
+        this.sessionManager = sessionManager;
     }
 
     @Override
     public void addToArchives(ServiceArchivesEntity serviceArchivesEntity) {
+        var entityManager = sessionManager.createEntityManager();
         var transaction = entityManager.getTransaction();
         transaction.begin();
 
@@ -24,14 +25,18 @@ public class Archives implements IArchives {
 
     @Override
     public List<ServiceArchivesEntity> getAllServices() {
-        var stringQuery = "SELECT b FROM ServiceArchivesEntity b";
-        var query = entityManager.createQuery(stringQuery, ServiceArchivesEntity.class);
+        try (var entityManager = sessionManager.createEntityManager()) {
+            var stringQuery = "SELECT b FROM ServiceArchivesEntity b";
+            var query = entityManager.createQuery(stringQuery, ServiceArchivesEntity.class);
 
-        return query.getResultList();
+            return query.getResultList();
+        }
     }
 
     @Override
     public ServiceArchivesEntity getOneService(int id) {
-        return entityManager.find(ServiceArchivesEntity.class, id);
+        try (var entityManager = sessionManager.createEntityManager()) {
+            return entityManager.find(ServiceArchivesEntity.class, id);
+        }
     }
 }
