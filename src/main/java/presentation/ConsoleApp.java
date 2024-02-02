@@ -115,10 +115,34 @@ public class ConsoleApp {
         switch (option) {
             case "1":
             case "Show all users":
+                showAllUsers();
                 break;
             case "2":
             case "Delete user":
+                deleteUser();
                 break;
+        }
+    }
+
+    private void showAllUsers() {
+        System.out.println("User      Department");
+        for (Staff s : admin.getAllUsers()) {
+            if (!s.getDepartment().name().equalsIgnoreCase("admin")) {
+                String leftAlignment = "%-9s %-10s %n";
+                System.out.format(leftAlignment, s.getLogin(), s.getDepartment());
+            }
+        }
+    }
+
+    private void deleteUser() {
+        System.out.println("Enter username:");
+        var username = scanner.nextLine();
+        Staff staff = admin.getAllUsers().stream().filter(u -> u.getLogin().equals(username)).findFirst().get();
+        System.out.println(staff.getLogin() + "  " + staff.getDepartment());
+        System.out.println("Are you sure about deletion? (y/n)");
+        var response = scanner.nextLine();
+        if (response.equalsIgnoreCase("y")) {
+            admin.deleteUser(username);
         }
     }
 
