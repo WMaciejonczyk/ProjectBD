@@ -94,6 +94,7 @@ public class TechnicianApp {
             case "6":
             case "Show service archives":
                 showArchiveEntries();
+                break;
         }
     }
 
@@ -140,7 +141,7 @@ public class TechnicianApp {
         System.out.println("(4) Show only MRI type devices");
         System.out.println("(5) Show devices with service expiring in 2 weeks");
         System.out.println("(6) Show devices with service expiring in 1 month");
-        System.out.println("(7) Show devices with service expiring in half a year");
+        System.out.println("(7) Show devices with service expiring in 1 year");
         System.out.println("(8) Show devices with expired service");
 
         return scanner.nextLine();
@@ -181,8 +182,8 @@ public class TechnicianApp {
                         filter(p -> p.getNextServiceDate().after(cal2.getTime())).collect(Collectors.toList());
                 break;
             case "7":
-            case "Show devices with service expiring in half a year":
-                cal.add(Calendar.DATE, 182);
+            case "Show devices with service expiring in 1 year":
+                cal.add(Calendar.DATE, 365);
                 filteredItems = items.stream().filter(p ->  p.getNextServiceDate().before(cal.getTime())).
                         filter(p -> p.getNextServiceDate().after(cal2.getTime())).collect(Collectors.toList());
                 break;
@@ -223,10 +224,15 @@ public class TechnicianApp {
 
     private void showArchiveEntries() {
         List<ArchiveEntry> entries = tech.getAllArchivesEntries(archives);
-        System.out.println("Service date   EquipmentID   Technician user  Description");
-        for (ArchiveEntry entry : entries) {
-            String leftAlignment = "%-14s %-13s %-16s %-20s %n";
-            System.out.format(leftAlignment, entry.getServiceDate(), entry.getEquipmentId(), entry.getTechnician(), entry.getDescription());
+        if (entries.isEmpty()) {
+            System.out.println("There are not any entries.");
+        }
+        else {
+            System.out.println("Service date   EquipmentID   Technician user  Description");
+            for (ArchiveEntry entry : entries) {
+                String leftAlignment = "%-14s %-13s %-16s %-20s %n";
+                System.out.format(leftAlignment, entry.getServiceDate(), entry.getEquipmentId(), entry.getTechnician(), entry.getDescription());
+            }
         }
     }
 }
