@@ -41,21 +41,13 @@ public class Doctor extends Staff {
         Integer IntItemID = Integer.parseInt(itemID);
         return reservationsRepository.getAllReservations().stream().filter(value -> value.getReservationId() == IntItemID).collect(Collectors.toList());
     }
-    public List<InfoEntity> getDevicesToService(IEquipmentStorage storage) {
+    public List<InfoEntity> getAvailableDevices(IEquipmentStorage storage) {
         return storage.getAllEquipment().stream().
                 filter(e -> e.getEqStatus().name().equalsIgnoreCase("FREE")).collect(Collectors.toList());
     }
-
-    public List<InfoEntity> getAvailableDevices(IEquipmentStorage storage) {
-        return storage.getAllEquipment().stream()
-    }
+    public void reserveDevice(Integer deviceID, Date reservationStart, Date reservationEnd, IReservationsRepository reservationsRepository) {
+        ReservationsEntity DeviceReservation = reservationsRepository.getOneReservation(deviceID);
 
 
-
-
-
-    public void reserveDevice(Integer deviceID, Date reservationStart, Date reservationEnd, IEquipmentStorage storage) {
-        InfoEntity infoEntity = storage.getOneEquipment(deviceID);
-        storage.updateEquipmentStatus(id, "OCCUPIED");
     }
 }

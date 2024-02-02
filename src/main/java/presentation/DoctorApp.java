@@ -58,8 +58,13 @@ public class DoctorApp {
                 //startReservation();
                 break;
             case "2":
-            case "Change equipment usage status":
-                // !!
+            case "Use equipment":
+                List<InfoEntity> AvailableDevices = doc.getAvailableDevices(storage);
+                System.out.println("Available items (ID,Name,Type, Status):");
+                for (InfoEntity item : AvailableDevices) {
+                    System.out.println(item.getEqId()+ "   " +  item .getEqName() + "   " + item.getEqType()
+                            + "  " + item.getEqStatus());
+                }
                 break;
             case "3":
             case "Show a list of equipment (with status)":
@@ -99,7 +104,7 @@ public class DoctorApp {
             var reservationStart = Date.valueOf(scanner.nextLine());
             System.out.println("End of reservation date in a (yyyy-mm-dd) format) ");
             var reservationEnd=  Date.valueOf(scanner.nextLine());
-            doc.reserveDevice(deviceID, reservationStart, reservationEnd, storage);
+            doc.reserveDevice(deviceID, reservationStart, reservationEnd, reservations);
         }
     }
 }
