@@ -40,9 +40,17 @@ department ENUM('DOCTOR', 'TECHNICIAN', 'ADMIN') NOT NULL
 
 INSERT INTO users(user_login, user_password, department)
  VALUES('project_admin', '1234', 'ADMIN');
- 
-SELECT * FROM users;
 
 CREATE VIEW technician_view AS
 SELECT info.eq_name, info.eq_type, DATE_ADD(info.last_service_date, INTERVAL info.service_validity_period DAY) AS next_service_date
+FROM info;
+
+INSERT INTO reservations(start_date, end_date, equipment_id, reserver)
+VALUES('2024-02-02', '2024-02-10', 1, 'John Doe');
+
+INSERT INTO reservations(start_date, end_date, equipment_id, reserver)
+VALUES('2024-02-15', '2024-02-20', 2, 'Jane Doe');
+
+CREATE VIEW doctor_view AS
+SELECT eq_id, eq_name, eq_type
 FROM info;
