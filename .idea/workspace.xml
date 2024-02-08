@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4eaacd9a-420a-4108-b315-b1b537a2b177" name="Changes" comment="My part update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/persistance/view/DoctorView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/persistance/view/DoctorViewStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/presentation/DoctorApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/DoctorViewItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fbc7795d-b5da-4f45-8e73-eccb1d2a9e02.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fbc7795d-b5da-4f45-8e73-eccb1d2a9e02.xml" afterDir="false" />
+    <list default="true" id="4eaacd9a-420a-4108-b315-b1b537a2b177" name="Changes" comment="Final update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistance/reservations/ReservationsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistance/reservations/ReservationsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/presentation/ConsoleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/ConsoleApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Doctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/presentation/DoctorApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/DoctorApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +108,7 @@
       <workItem from="1706730326721" duration="10574000" />
       <workItem from="1706794095192" duration="5172000" />
       <workItem from="1706807910780" duration="143000" />
-      <workItem from="1706808067752" duration="34766000" />
+      <workItem from="1706808067752" duration="38449000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -174,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706879936834</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Final update">
+      <option name="closed" value="true" />
+      <created>1706881820878</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706881820878</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +196,7 @@
     <MESSAGE value="Technician module update" />
     <MESSAGE value="Admin module update" />
     <MESSAGE value="My part update" />
-    <option name="LAST_COMMIT_MESSAGE" value="My part update" />
+    <MESSAGE value="Final update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final update" />
   </component>
 </project>

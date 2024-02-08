@@ -55,16 +55,11 @@ public class DoctorApp {
         switch (option) {
             case "1":
             case "Reserve equipment":
-                //startReservation();
+                System.out.println("Not implemented");
                 break;
             case "2":
             case "Use equipment":
-                List<InfoEntity> AvailableDevices = doc.getAvailableDevices(storage);
-                System.out.println("Available items (ID,Name,Type, Status):");
-                for (InfoEntity item : AvailableDevices) {
-                    System.out.println(item.getEqId()+ "   " +  item .getEqName() + "   " + item.getEqType()
-                            + "  " + item.getEqStatus());
-                }
+                System.out.println("Not implemented");
                 break;
             case "3":
             case "Show a list of equipment (with status)":
