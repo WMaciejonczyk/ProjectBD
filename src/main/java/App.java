@@ -1,7 +1,9 @@
 import jakarta.persistence.Persistence;
 import persistance.archives.Archives;
 import persistance.equipment.EquipmentStorage;
+import persistance.reservations.ReservationsRepository;
 import persistance.users.Users;
+import persistance.view.DoctorViewStorage;
 import persistance.view.TechnicianViewStorage;
 import presentation.ConsoleApp;
 import service.*;
@@ -19,7 +21,9 @@ public class App {
         var equipment = new EquipmentStorage(emf);
         var technicianView = new TechnicianViewStorage(emf);
         var archives = new Archives(emf);
-        var consoleApp = new ConsoleApp(scanner, admin, equipment, technicianView, archives);
+        var reservations = new ReservationsRepository(emf);
+        var doctorView = new DoctorViewStorage(emf);
+        var consoleApp = new ConsoleApp(scanner, admin, equipment, technicianView, archives, doctorView, reservations);
         // start
         consoleApp.start();
 

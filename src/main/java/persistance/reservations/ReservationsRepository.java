@@ -1,19 +1,22 @@
 package persistance.reservations;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import persistance.entity.InfoEntity;
 import persistance.entity.ReservationsEntity;
 
 import java.util.List;
 
 public class ReservationsRepository implements IReservationsRepository {
-    private final EntityManager entityManager;
+    private final EntityManagerFactory sessionManager;
 
-    public ReservationsRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public ReservationsRepository(EntityManagerFactory sessionManager) {
+        this.sessionManager = sessionManager;
     }
 
     @Override
     public void addReservation(ReservationsEntity reservationsEntity) {
+        var entityManager = sessionManager.createEntityManager();
         var transaction = entityManager.getTransaction();
         transaction.begin();
 
@@ -24,14 +27,18 @@ public class ReservationsRepository implements IReservationsRepository {
 
     @Override
     public List<ReservationsEntity> getAllReservations() {
-        var stringQuery = "SELECT b FROM ReservationsEntity b";
-        var query = entityManager.createQuery(stringQuery, ReservationsEntity.class);
+        try (var entityManager = sessionManager.createEntityManager()) {
+            var stringQuery = "SELECT b FROM ReservationsEntity b";
+            var query = entityManager.createQuery(stringQuery, ReservationsEntity.class);
 
-        return query.getResultList();
+            return query.getResultList();
+        }
     }
 
     @Override
     public ReservationsEntity getOneReservation(int id) {
-        return entityManager.find(ReservationsEntity.class, id);
+        try (var entityManager = sessionManager.createEntityManager()) {
+            return entityManager.find(ReservationsEntity.class, id);
+        }
     }
 }
